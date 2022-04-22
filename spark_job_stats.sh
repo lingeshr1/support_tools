@@ -1,3 +1,10 @@
+#!/bin/sh
+
+if [ "$1" = "" ]
+then
+  echo "Usage: $0 <Driver_container_logs>"
+  exit 1
+fi
 
 echo "Top Jobs :"
 grep "DAGScheduler: Job" $1 | grep took | awk '{print $5":"$6" -> "$12" sec"'} | sort -nr -k3 | head
