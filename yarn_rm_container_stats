@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$1" = "" ]
+then
+  echo "Usage: $0 <RM_LOG>"
+  exit 1
+fi
+
+head -1 $1 | awk '{print "Starting Time: "$1" "$2}'
+echo "Containers allocated & running: "
+grep "Container Transitioned from ACQUIRED to RUNNING" $1 | wc -l
+echo "Containers finished on NMs: "
+grep "Container Transitioned from RUNNING to COMPLETED" $1 | wc -l
+tail -1 $1 | awk '{print "Ending Time: "$1" "$2}'
+
+exit 0
