@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$1" = "" ]
+then
+  echo "Usage: $0 <Driver_container_logs>"
+  exit 1
+fi
+
+echo "Parsing the container logs for patterns :"
+
+grep -E "Running Spark version|Successfully started service |EventLoggingListener: Logging events to|Got job|Job .* finished.* took|Write Job .* committed|Successfully stopped SparkContext|Final app status|spark.SparkContext: Invoking|Job aborted|was preempted|Lost executor|Lost task
